@@ -46,5 +46,12 @@ namespace SnakeS
             this.sym = ' ';
             Draw();
         }
+        public bool Eq(Point p)
+        {
+            if ((p.x == this.x) && (p.y == this.y))
+                return true;
+            else
+                return false;
+        }
     }
 }

@@ -21,20 +21,35 @@ namespace SnakeS
             Left1.Draw();
             VerticalLine Down1 = new VerticalLine(68, 2, 19, '|');
             Down1.Draw();
-            Point p = new Point(2, 2, '&');
-            Snake S = new Snake(p, 4, Direction.Right);
+            MakeFood foodm = new MakeFood(70, 20, '&');
+            Point food = foodm.Make();
+            food.Draw();
+            Point snakest = new Point(2, 2, '*');
+            Snake S = new Snake(snakest, 4, Direction.Right);
             S.Draw();
-            S.Move();
-            Thread.Sleep(500);
-            S.Move();
-            Thread.Sleep(500);
-            S.Move();
-            Thread.Sleep(500);
-            S.Move();
-            Thread.Sleep(500);
-            S.Move();
-            Thread.Sleep(500);
-            S.Move();
+
+            while (true)
+            {
+                if (S.Eat(food))
+                {
+                    food = foodm.Make();
+                    food.Draw();
+                }
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    if (key.Key == ConsoleKey.LeftArrow)
+                        S.Dir = Direction.Left;
+                    else if (key.Key == ConsoleKey.RightArrow)
+                        S.Dir = Direction.Right;
+                    else if (key.Key == ConsoleKey.UpArrow)
+                        S.Dir = Direction.Up;
+                    else if (key.Key == ConsoleKey.DownArrow)
+                        S.Dir = Direction.Down;
+                }
+                Thread.Sleep(200);
+                S.Move();
+            }
             Console.ReadLine();
         }
     }

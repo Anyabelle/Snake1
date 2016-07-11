@@ -8,7 +8,7 @@ namespace SnakeS
 {
     class Snake : Figure
     {
-        Direction Dir;
+        public Direction Dir;
         public Snake(Point Tail, int Length, Direction Direct)
         {
             Dir = Direct;
@@ -31,6 +31,21 @@ namespace SnakeS
             Tail = Line.First();
             Line.Remove(Tail);
             Tail.Eraze();
+        }
+
+        public bool Eat(Point food)
+        {
+            Point Head = new Point();
+            Head = Line.Last();
+            Point Next = new Point(Head);
+            Next.Move(1, Dir);
+            if (Next.Eq(food))
+            {
+                Line.Add(Next);
+                return true;
+            }
+            else
+                return false;
         }
     }
 }
