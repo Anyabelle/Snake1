@@ -14,7 +14,7 @@ namespace SnakeS
             //Draw Frame
             Console.SetWindowSize(70, 20);
             Walls wall = new Walls();
-            MakeFood foodm = new MakeFood(70, 20, '&');
+            MakeFood foodm = new MakeFood(70, 20, 'o');
             Point food = foodm.Make();
             food.Draw();
             Point snakest = new Point(2, 2, '*');
@@ -26,7 +26,14 @@ namespace SnakeS
                 if (S.Eat(food))
                 {
                     food = foodm.Make();
+                    while (S.IsinF(food))
+                        food = foodm.Make(); 
+                    Console.Write(food.x);
+                    Console.Write(' ');
+                    Console.Write(food.y);
+                    Console.WriteLine();
                     food.Draw();
+                 
                 }
                 if (Console.KeyAvailable)
                 {
@@ -40,7 +47,7 @@ namespace SnakeS
                     else if (key.Key == ConsoleKey.DownArrow)
                         S.Dir = Direction.Down;
                 }
-                Thread.Sleep(200);
+                Thread.Sleep(130);
                 Point Head = S.Head();
                 Head = Head.NextPoint(S.Dir);
                 if (wall.HitWalls(Head) || S.HitSnake())
