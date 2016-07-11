@@ -13,14 +13,7 @@ namespace SnakeS
         {
             //Draw Frame
             Console.SetWindowSize(70, 20);
-            HorisontalLine Left = new HorisontalLine(2, 67, 1, '_');
-            Left.Draw();
-            VerticalLine Down = new VerticalLine(1, 2, 19, '|');
-            Down.Draw();
-            HorisontalLine Left1 = new HorisontalLine(2, 68, 19, '_');
-            Left1.Draw();
-            VerticalLine Down1 = new VerticalLine(68, 2, 19, '|');
-            Down1.Draw();
+            Walls wall = new Walls();
             MakeFood foodm = new MakeFood(70, 20, '&');
             Point food = foodm.Make();
             food.Draw();
@@ -48,6 +41,14 @@ namespace SnakeS
                         S.Dir = Direction.Down;
                 }
                 Thread.Sleep(200);
+                Point Head = S.Head();
+                Head = Head.NextPoint(S.Dir);
+                if (wall.HitWalls(Head))
+                {
+                    Console.SetCursorPosition(30, 10);
+                    Console.WriteLine("The End");
+                    break;
+                }
                 S.Move();
             }
             Console.ReadLine();

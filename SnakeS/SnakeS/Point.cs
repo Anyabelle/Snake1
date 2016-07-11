@@ -53,5 +53,11 @@ namespace SnakeS
             else
                 return false;
         }
+        public Point NextPoint(Direction dir)
+        {
+            Point Next = new Point(this);
+            Next.Move(1, dir);
+            return Next;
+        }
     }
 }

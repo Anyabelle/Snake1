@@ -23,8 +23,7 @@ namespace SnakeS
         {
             Point Head = new Point();
             Head = Line.Last();
-            Point Next = new Point(Head);
-            Next.Move(1, Dir);
+            Point Next = Head.NextPoint(Dir);
             Line.Add(Next);
             Draw();
             Point Tail = new Point();
@@ -47,5 +46,16 @@ namespace SnakeS
             else
                 return false;
         }
+        public Point Head()
+        {
+            return new Point(Line.Last());
+        }
+        /*public bool HitSnake()
+        {
+            Point p = this.Head();
+            p = p.NextPoint(Dir);
+
+        }*/
+
     }
 }

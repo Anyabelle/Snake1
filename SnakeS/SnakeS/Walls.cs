@@ -25,12 +25,17 @@ namespace SnakeS
             Frame.Add(Down1);
         }
 
-        public void HitWalls(Figure snake)
+        public bool HitWalls(Point Head)
         {
             foreach (Figure f in Frame)
             {
-
+                foreach (Point p in f.Line)
+                {
+                    if (p.Eq(Head))
+                        return true;
+                }
             }
+            return false;
         }
     }
 }
