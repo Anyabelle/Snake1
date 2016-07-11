@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace SnakeS
 {
@@ -20,6 +21,20 @@ namespace SnakeS
             Left1.Draw();
             VerticalLine Down1 = new VerticalLine(68, 2, 19, '|');
             Down1.Draw();
+            Point p = new Point(2, 2, '&');
+            Snake S = new Snake(p, 4, Direction.Right);
+            S.Draw();
+            S.Move();
+            Thread.Sleep(500);
+            S.Move();
+            Thread.Sleep(500);
+            S.Move();
+            Thread.Sleep(500);
+            S.Move();
+            Thread.Sleep(500);
+            S.Move();
+            Thread.Sleep(500);
+            S.Move();
             Console.ReadLine();
         }
     }

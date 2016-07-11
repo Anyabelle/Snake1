@@ -17,10 +17,34 @@ namespace SnakeS
             y = _y;
             sym = _sym;
         }
+        public Point()
+        {}
+        public Point(Point p)
+        {
+            this.x = p.x;
+            this.y = p.y;
+            this.sym = p.sym;
+        }
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
             Console.WriteLine(sym);
+        }
+        public void Move(int i, Direction Dir)
+        {
+            if (Dir == Direction.Left)
+                this.x -= i;
+            else if (Dir == Direction.Right)
+                this.x += i;
+            else if (Dir == Direction.Up)
+                this.y -= i;
+            else if (Dir == Direction.Down)
+                this.y += i;
+        }
+        public void Eraze()
+        {
+            this.sym = ' ';
+            Draw();
         }
     }
 }
