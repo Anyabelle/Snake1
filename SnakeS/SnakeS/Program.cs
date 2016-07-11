@@ -18,7 +18,7 @@ namespace SnakeS
             Point food = foodm.Make();
             food.Draw();
             Point snakest = new Point(2, 2, '*');
-            Snake S = new Snake(snakest, 4, Direction.Right);
+            Snake S = new Snake(snakest, 5, Direction.Right);
             S.Draw();
 
             while (true)
@@ -43,7 +43,7 @@ namespace SnakeS
                 Thread.Sleep(200);
                 Point Head = S.Head();
                 Head = Head.NextPoint(S.Dir);
-                if (wall.HitWalls(Head))
+                if (wall.HitWalls(Head) || S.HitSnake())
                 {
                     Console.SetCursorPosition(30, 10);
                     Console.WriteLine("The End");

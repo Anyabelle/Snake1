@@ -50,12 +50,17 @@ namespace SnakeS
         {
             return new Point(Line.Last());
         }
-        /*public bool HitSnake()
+        public bool HitSnake()
         {
             Point p = this.Head();
             p = p.NextPoint(Dir);
-
-        }*/
+            if (this.IsinF(p))
+            {
+                return true;
+            }
+            return false;
+            
+        }
 
     }
 }
