@@ -32,19 +32,12 @@ namespace SnakeS
             Tail.Eraze();
         }
 
-        public bool Eat(Point food)
+        public void Eat(Point food)
         {
             Point Head = new Point();
             Head = Line.Last();
-            Point Next = new Point(Head);
-            Next.Move(1, Dir);
-            if (Next.Eq(food))
-            {
-                Line.Add(Next);
-                return true;
-            }
-            else
-                return false;
+            Point Next = Head.NextPoint(Dir);
+            Line.Add(Next);
         }
         public Point Head()
         {
